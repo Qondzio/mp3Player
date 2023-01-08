@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="361.0" prefWidth="753.0" style="-fx-background-color: #202021;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3Player">
+   <children>
+      <Slider fx:id="volumeBar" blockIncrement="0.1" layoutX="547.0" layoutY="283.0" max="1.0" prefHeight="37.0" prefWidth="198.0" value="0.5" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="8.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="608.0" layoutY="260.0" text="Volume" textFill="#fff9f9" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="69.0">
+         <font>
+            <Font name="Comic Sans MS" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="songName" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="78.0" prefHeight="103.0" prefWidth="753.0" text="MP3 Player" textFill="#f5f3f3" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="78.0">
+         <font>
+            <Font size="70.0" />
+         </font>
+      </Label>
+      <Slider fx:id="songProgress" layoutX="5.0" layoutY="218.0" prefHeight="26.0" prefWidth="746.0" AnchorPane.bottomAnchor="117.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="218.0" />
+      <Button fx:id="playButtonn" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="280.0" layoutY="258.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playMusic" prefHeight="80.0" prefWidth="85.0" style="-fx-background-radius: 100;" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Comic Sans MS" size="23.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="465.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@playbutton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Button>
+      <Button fx:id="stopButton" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" layoutX="370.0" layoutY="258.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#stopMusic" prefHeight="80.0" prefWidth="85.0" style="-fx-background-radius: 100;" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Comic Sans MS" size="23.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="80.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@pausebutton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="nextButton" alignment="CENTER" contentDisplay="CENTER" layoutX="460.0" layoutY="268.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nextMusic" prefHeight="66.0" prefWidth="76.0" style="-fx-background-radius: 100;">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="72.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@nextbutton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="previousButton" alignment="CENTER" contentDisplay="CENTER" layoutX="198.0" layoutY="268.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#previousMusic" prefHeight="66.0" prefWidth="76.0" style="-fx-background-radius: 100;">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="72.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@previousbutton.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+   </children>
+</AnchorPane>
