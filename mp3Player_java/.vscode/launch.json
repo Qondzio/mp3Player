@@ -14,30 +14,6 @@
         },
         {
             "type": "java",
-            "name": "Launch test",
-            "request": "launch",
-            "mainClass": "test",
-            "projectName": "projekt_5c3401c",
-            "vmArgs": "--module-path javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media"
-        },
-        {
-            "type": "java",
-            "name": "Launch Main",
-            "request": "launch",
-            "mainClass": "Main",
-            "projectName": "projekt_5c3401c",
-            "vmArgs": "--module-path javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media"
-        },
-        {
-            "type": "java",
-            "name": "Launch MPlayer",
-            "request": "launch",
-            "mainClass": "mp3Player",
-            "projectName": "projekt_5c3401c",
-            "vmArgs": "--module-path javafx-sdk-19/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics,javafx.media"
-        },
-        {
-            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
