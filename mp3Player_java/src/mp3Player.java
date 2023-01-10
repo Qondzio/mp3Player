@@ -12,6 +12,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.util.Duration;
 
 public class mp3Player implements Initializable{
@@ -41,12 +43,36 @@ public class mp3Player implements Initializable{
     @FXML
     private Slider volumeBar;
 
+    @FXML
+    private Button uploadMusic;
+
     private File directory;
     private ArrayList<File> playlist;
     private File[] files;
     private Media media;
     private MediaPlayer mediaPlayer;
     private int songNumber=1;
+
+    //listener for songProgress
+    private void ListenerSongMusic()
+    {
+        media=new Media(playlist.get(songNumber).toURI().toString());
+        mediaPlayer=new MediaPlayer(media);
+        mediaPlayer.currentTimeProperty().addListener((ObservableValue,oldValue,newValue)->
+         {
+            songProgress.setMax(mediaPlayer.getTotalDuration().toSeconds()); 
+            songProgress.setValue(newValue.toSeconds());
+         });
+    }
+
+    //listener for Volume
+    private void ListenerVolume()
+    {
+        volumeBar.valueProperty().addListener((ObservableValue,oldValue,newValue)->
+        {
+            mediaPlayer.setVolume((double) (newValue));
+        }); 
+    }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) 
@@ -65,45 +91,29 @@ public class mp3Player implements Initializable{
 			}
         }
 
-        media=new Media(playlist.get(songNumber).toURI().toString());
-        mediaPlayer=new MediaPlayer(media);
+        ListenerSongMusic();
+        ListenerVolume();
 
-
-        //listener for Volume
-        volumeBar.valueProperty().addListener((ObservableValue,oldValue,newValue)->
+        songProgress.setOnMousePressed(new EventHandler<MouseEvent>()
         {
-            mediaPlayer.setVolume((double) (newValue));
+
+            @Override
+            public void handle(MouseEvent arg0) 
+            {
+                mediaPlayer.seek(Duration.seconds(songProgress.getValue())); 
+            }
         });
 
-
-        //listener for songProgress
-         mediaPlayer.currentTimeProperty().addListener((ObservableValue,oldValue,newValue)->
-         {
-            songProgress.setMax(mediaPlayer.getTotalDuration().toSeconds()); 
-            songProgress.setValue(newValue.toSeconds());
-         });
-
-         
-         songProgress.setOnMousePressed(new EventHandler<MouseEvent>()
-         {
-
-            @Override
-            public void handle(MouseEvent arg0) 
-            {
-                mediaPlayer.seek(Duration.seconds(songProgress.getValue())); 
-            }
-         });
-
         
-         songProgress.setOnMouseDragged(new EventHandler<MouseEvent>()
-         {
+        songProgress.setOnMouseDragged(new EventHandler<MouseEvent>()
+        {
 
             @Override
             public void handle(MouseEvent arg0) 
             {
                 mediaPlayer.seek(Duration.seconds(songProgress.getValue())); 
             }
-         });
+        });
     }
     
     @FXML
@@ -130,14 +140,8 @@ public class mp3Player implements Initializable{
         {
             songNumber=0;
         }    
-        media=new Media(playlist.get(songNumber).toURI().toString());
-        mediaPlayer=new MediaPlayer(media);
+        ListenerSongMusic();
         songName.setText(playlist.get(songNumber).getName());
-        mediaPlayer.currentTimeProperty().addListener((ObservableValue,oldValue,newValue)->
-         {
-            songProgress.setMax(mediaPlayer.getTotalDuration().toSeconds()); 
-            songProgress.setValue(newValue.toSeconds());
-         });
         mediaPlayer.play();
     }
 
@@ -150,14 +154,30 @@ public class mp3Player implements Initializable{
         {
             songNumber=playlist.size()-1;
         }
-        media=new Media(playlist.get(songNumber).toURI().toString());
-        mediaPlayer=new MediaPlayer(media);
+        ListenerSongMusic();
         songName.setText(playlist.get(songNumber).getName());
-        mediaPlayer.currentTimeProperty().addListener((ObservableValue,oldValue,newValue)->
-         {
-            songProgress.setMax(mediaPlayer.getTotalDuration().toSeconds()); 
-            songProgress.setValue(newValue.toSeconds());
-         });
         mediaPlayer.play();
+    }
+
+    @FXML
+    void uploadMusic (ActionEvent event)
+    {
+        mediaPlayer.pause();
+        FileChooser fileChooser= new FileChooser();
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("mp3 Files", "*.mp3"));
+        File file=fileChooser.showOpenDialog(null);
+        if(file!=null)
+        {
+            playlist.add(file);
+            mediaPlayer.stop();
+            songNumber=playlist.size()-1;
+            ListenerSongMusic();
+            songName.setText(playlist.get(songNumber).getName());
+            mediaPlayer.play();
+        }
+        else
+        {
+            mediaPlayer.play();
+        }
     }
 }

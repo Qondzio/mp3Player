@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="361.0" prefWidth="753.0" style="-fx-background-color: #202021;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mp3Player">
    <children>
-      <Slider fx:id="volumeBar" blockIncrement="0.1" layoutX="547.0" layoutY="283.0" max="1.0" prefHeight="37.0" prefWidth="198.0" value="0.5" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="8.0" />
+      <Slider fx:id="volumeBar" blockIncrement="0.2" layoutX="547.0" layoutY="283.0" max="1.0" prefHeight="37.0" prefWidth="198.0" value="0.5" AnchorPane.bottomAnchor="41.0" AnchorPane.rightAnchor="8.0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="608.0" layoutY="260.0" text="Volume" textFill="#fff9f9" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="69.0">
          <font>
             <Font name="Comic Sans MS" size="23.0" />
@@ -73,5 +73,17 @@
                </image>
             </ImageView>
          </graphic></Button>
+      <Button fx:id="uploadButton" alignment="CENTER" contentDisplay="CENTER" layoutX="48.0" layoutY="269.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#uploadMusic" prefHeight="66.0" prefWidth="76.0" style="-fx-background-radius: 100;">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="77.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@upload.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
